@@ -187,9 +187,8 @@ submit.addEventListener("click", function (scoreData) {
         },
     ]
     
-    userScore.initials = initialForm.value();
+    
 
-    console.log(userScore)
 
    
 
