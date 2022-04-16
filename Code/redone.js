@@ -9,7 +9,7 @@ var btn3 = document.querySelector("#btn3")
 var btn4 = document.querySelector("#btn4")
 var target = btn1, btn2, btn3, btn4
 var currentQIndex = 0;
-var timeLeft = 20;
+var timeLeft = 60;
 var score = timeLeft
 var scoreData = localStorage.getItem('score')
 var stage2 = document.querySelector(".scorearea")
@@ -165,7 +165,7 @@ answerCardHead.addEventListener('click', function (event) {
 
 
 
-// CODE FOR INDEX2 BEGINS
+// CODE FOR SCORE SECTION BEGINS
 var submit = document.querySelector(".submit")
 var initialForm = document.querySelector(".initialform")
 var finalscorelist = document.querySelector('.finalscorelist')
@@ -186,6 +186,10 @@ submit.addEventListener("click", function (scoreData) {
             score: timeLeft
         },
     ]
+    
+    userScore.initials = initialForm.value();
+
+    console.log(userScore)
 
    
 
@@ -194,10 +198,14 @@ submit.addEventListener("click", function (scoreData) {
     console.log(userScore)
     console.log(localStorage.setItem('score', JSON.stringify(initials)))
     for (i = 0; i <= initials; i++) {
-        finalscorelist.append(initials);
+        var list = document.body.createElement("li");
+        list.textContent = userScore;
+        list.setAttribute('score', i);
+    }
+        finalscorelist.appendChild(list);
         console.log(userScore)
         console.log(localStorage.setItem('score', JSON.stringify(initials)))
-        congrats.textContent=localStorage.setItem('score', JSON.stringify(initials))
-    }
+        // congrats.textContent=localStorage.setItem('score', JSON.stringify(initials))
+    
     
 })
