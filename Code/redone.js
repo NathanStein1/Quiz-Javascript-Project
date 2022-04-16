@@ -9,37 +9,47 @@ var btn3 = document.querySelector("#btn3")
 var btn4 = document.querySelector("#btn4")
 var target = btn1, btn2, btn3, btn4
 var currentQIndex = 0;
-var timeLeft = 60;
+var timeLeft = 20;
 var score = timeLeft
 var scoreData = localStorage.getItem('score')
 var stage2 = document.querySelector(".scorearea")
 var congrats = document.querySelector('.pg2banner')
+var welcome = document.querySelector('.Welcome')
+var x = document.querySelector(".score")
+var highscore = document.querySelector('.highscorelink')
+var box = document.querySelector('.timebox')
 
 var qandA = [
     {
         questions: 'What is your favorite cheese?',
-        answers: ["Manchego", "Blue", "Cheddar", "Pizza"
+        answers: ["Pecorino Romano","Manchego", "Stiltons", "Brie", 
         ],
         solution: 0
     },
     {
         questions: 'What is your favorite color?',
-        answers: ["Blue", "Red", "Yellow", "Pink"
+        answers: ["Red", "Blue", "Green", "Yellow"
         ],
         solution: 1
     },
     {
         questions: 'What is your favorite movie?',
-        answers: ["Cars", "Cars", "Cars", "Cars"],
+        answers: ["Cars 2", "Cars 2", "Cars 2", "Cars 2"],
         solution: 2
 
     },
     {
         questions: 'What is your favorite animal?',
-        answers: ["Dog", "Cat", "Rat", "Hat"
+        answers: ["Dog", "Platypus", "Manatee", "Dragon"
         ],
         solution: 3
-    }
+    },
+    {
+        questions: 'When is my birthday?',
+        answers: ["Today", "Tomorrow", "Overmorrow", "In a fortnight"
+        ],
+        solution: 1
+    },
 ]
 
 
@@ -47,6 +57,7 @@ var qandA = [
 // List of Tasks:
 // 1. Fix document.body to be wrapper
 // 2. Store to local storage, stop timer, score = timeLeft
+
 
 
 start.addEventListener("click", startgame);
@@ -60,8 +71,13 @@ function time() {
         timer.textContent = timeLeft
 
 
-        if (timeLeft === 0) {
+        if (timeLeft <= 0) {
             clearInterval(timeInterval);
+            document.body.style.backgroundImage="url('./Images/jigsaw.jpg')";
+            document.body.style.backgroundSize="cover"
+            questionbox.style.display='none'
+            highscore.style.display='none'
+            box.style.display='none'
 
         }
 
@@ -74,6 +90,7 @@ function time() {
 
 
 function startgame() {
+    welcome.textContent="It's Game Time"
     time();
     questionbox.classList.remove('hide');
     displayQuestionAnswer();
@@ -113,6 +130,10 @@ function clearButton() {
     answerCardHead.innerHTML = ""
     stage2.classList.remove('hide')
     questionCardHead.classList.add('hide')
+    welcome.style.display="none"
+    var x = document.querySelector(".score")
+    x.textContent=timeLeft
+
 
 
 
@@ -148,6 +169,7 @@ answerCardHead.addEventListener('click', function (event) {
 var submit = document.querySelector(".submit")
 var initialForm = document.querySelector(".initialform")
 var finalscorelist = document.querySelector('.finalscorelist')
+
 var initials = JSON.parse(localStorage.getItem('score')) || []
 // JSON.stringify
 
@@ -165,7 +187,7 @@ submit.addEventListener("click", function (scoreData) {
         },
     ]
 
-    console.log("Hello")
+   
 
     userScore.push({initials: initialForm.value, score: timeLeft})
     localStorage.setItem('score', JSON.stringify(initials))
@@ -177,4 +199,5 @@ submit.addEventListener("click", function (scoreData) {
         console.log(localStorage.setItem('score', JSON.stringify(initials)))
         congrats.textContent=localStorage.setItem('score', JSON.stringify(initials))
     }
+    
 })

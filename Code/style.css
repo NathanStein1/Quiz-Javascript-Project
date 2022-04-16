@@ -2,7 +2,9 @@
     box-sizing: border-box;
 
 } */
-
+body {
+    background-color: rgb(230, 226, 225);
+}
 .hide {
     display: none;
 }
@@ -20,9 +22,13 @@
 }
 
 .highscorelink {
-    padding: 20px;
+    padding-left: 2px;
 }
-
+#blood{
+    color: red;
+    padding-left: 10px;
+    font-size: xx-large;
+}
 .container {
     
 
@@ -59,6 +65,7 @@
 .Welcome {
     display: flex;
     justify-content: center;
+    font-size: xx-large;
 }
 
 /* -----------------pg2----------------------- */
