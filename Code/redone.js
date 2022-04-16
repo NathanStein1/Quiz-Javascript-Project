@@ -168,7 +168,7 @@ answerCardHead.addEventListener('click', function (event) {
 // CODE FOR SCORE SECTION BEGINS
 var submit = document.querySelector(".submit")
 var initialForm = document.querySelector(".initialform")
-var finalscorelist = document.querySelector('.finalscorelist')
+var finalscorelist = document.querySelector('.finalscoreList')
 
 var initials = JSON.parse(localStorage.getItem('score')) || []
 // JSON.stringify
@@ -187,23 +187,19 @@ submit.addEventListener("click", function (scoreData) {
         },
     ]
     
-    
+   //var scoreIndex = []
 
-
-   
-
-    userScore.push({initials: initialForm.value, score: timeLeft})
-    localStorage.setItem('score', JSON.stringify(initials))
+    // userScore.push({initials: initialForm.value, score: timeLeft})
+    localStorage.setItem('score', JSON.stringify(userScore))
     console.log(userScore)
-    console.log(localStorage.setItem('score', JSON.stringify(initials)))
-    for (i = 0; i <= initials; i++) {
-        var list = document.body.createElement("li");
-        list.textContent = userScore;
+    for (i = 0; i < userScore.length; i++) {
+        var list = document.createElement("li");
+        list.textContent = userScore[i].initials + ": " + userScore[i].score;
         list.setAttribute('score', i);
-    }
         finalscorelist.appendChild(list);
+    }
         console.log(userScore)
-        console.log(localStorage.setItem('score', JSON.stringify(initials)))
+    
         // congrats.textContent=localStorage.setItem('score', JSON.stringify(initials))
     
     
