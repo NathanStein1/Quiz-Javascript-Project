@@ -19,6 +19,7 @@ var x = document.querySelector(".score")
 var highscore = document.querySelector('.highscorelink')
 var box = document.querySelector('.timebox')
 
+// This sets up my questions and allows me to assign values in the array
 var qandA = [
     {
         questions: 'What is a boolean value?',
@@ -53,21 +54,22 @@ var qandA = [
 ]
 
 
-// ---------------------------Code START------------------------------------------
+// The game begins here
 
-
+// Run game
 start.addEventListener("click", startgame);
 
+// Run timer
 var timeInterval;
 
 function time() {
 
-     timeInterval = setInterval(function () {
+    timeInterval = setInterval(function () {
         timeLeft--;
         timer.textContent = timeLeft
 
 
-        if (timeLeft <= 0) {
+        if (timeLeft < 0) {
             clearInterval(timeInterval);
             document.body.style.backgroundImage = "url('./Images/jigsaw.jpg')";
             document.body.style.backgroundSize = "cover"
@@ -83,12 +85,9 @@ function time() {
 
 
 
-
-
     }, 1000);
 
 }
-
 
 function startgame() {
     welcome.textContent = "It's Game Time"
@@ -100,7 +99,7 @@ function startgame() {
 
 
 
-// This function does not work
+// Fill out buttons and add info from array
 function displayQuestionAnswer() {
     console.log(currentQIndex)
 
@@ -118,6 +117,7 @@ function displayQuestionAnswer() {
         var button = document.createElement("button")
         button.textContent = qandA[currentQIndex].answers[i]
         button.setAttribute("data-index", i)
+        
         buttonArray.push(button)
         console.log(buttonArray[i])
         answerCardHead.appendChild(buttonArray[i])
@@ -127,6 +127,7 @@ function displayQuestionAnswer() {
 
 };
 
+// Move to next stage, add initials and clear qandA
 function clearButton() {
     answerCardHead.innerHTML = ""
     stage2.classList.remove('hide')
@@ -141,6 +142,8 @@ function clearButton() {
 
 
 };
+
+// Lets user know if they were right or wrong, sets up game rules
 var right = document.body.querySelector('.right')
 
 answerCardHead.addEventListener('click', function (event) {
@@ -151,7 +154,7 @@ answerCardHead.addEventListener('click', function (event) {
         currentQIndex++
         displayQuestionAnswer();
         console.log("Correct")
-        right.textContent="Good. Now don't get cocky..."
+        right.textContent = "Good. Now don't get cocky..."
 
     }
 
@@ -163,8 +166,10 @@ answerCardHead.addEventListener('click', function (event) {
         currentQIndex++
         displayQuestionAnswer();
         console.log("incorrect")
-        right.textContent="Uh-oh...tick tock tick tock :)"
+        right.textContent = "Uh-oh...tick tock tick tock :)"
     }
+
+
 
 
 })
@@ -175,20 +180,11 @@ answerCardHead.addEventListener('click', function (event) {
 var submit = document.querySelector(".submit")
 var initialForm = document.querySelector(".initialform")
 var finalscorelist = document.querySelector('.finalscoreList')
-
 var initials = JSON.parse(localStorage.getItem('score')) || []
-// JSON.stringify
-
 var replay = document.body.querySelector(".replay")
-
 var list = document.createElement("div");
 
-// TO DO
-// 1.  // push userscore into scoreIndex, set a value to save here. This allows for multiple scores, as opposed to rewriting all of it
-// 2. Fix timer so that it doesnt run twice when reset button is hit
-
 submit.addEventListener("click", function (scoreData) {
-    // console.log(initialForm.value)
     var userScore = [
         {
             initials: initialForm.value,
@@ -196,63 +192,54 @@ submit.addEventListener("click", function (scoreData) {
         },
     ]
 
-    //var scoreIndex = []
-   
     var data = JSON.parse(localStorage.getItem("score")) || [];
 
-    // userScore.push({initials: initialForm.value, score: timeLeft})
     localStorage.setItem('score', JSON.stringify([...data, ...userScore]))
-    console.log(userScore)
     for (i = 0; i < userScore.length; i++) {
         var list = document.createElement("li");
         list.textContent = userScore[i].initials + ": " + userScore[i].score;
         list.setAttribute('score', i);
         finalscorelist.appendChild(list);
     }
-    console.log(userScore)
-
-
-    // congrats.textContent=localStorage.setItem('score', JSON.stringify(initials))
-
 
 })
+
+// Reset the game and play again
 function reset() {
     startgame();
     timeLeft = 60
     start.style.display = "flex"
     stage2.classList.add('hide')
     currentQIndex = 0
-    
-    // finalscorelist.textcontent=" "
+
 }
 
 
 replay.addEventListener("click", reset);
 
-highscore.addEventListener('click', function(){
+// Add time values to scoresheet
+highscore.addEventListener('click', function () {
     var group = document.querySelector(".highscoregroup")
     var data = JSON.parse(localStorage.getItem("score")) || [];
 
     var template = '';
     data.forEach((datum) => {
-        template+= `
+        template += `
             <li>
                 ${datum.initials} : ${datum.score}
             </li>
         `;
     });
-    // var scoreList = document.createElement('li')
-    // scoreList.textContent=list.textContent
-     group.innerHTML = template;
-    // group.appendChild(scoreList)
-    // highscore.textContent=finalscorelist.textContent
+
+    group.innerHTML = template;
 })
 
 
 var clear = document.body.querySelector(".clear")
 
-function cleanHigh (){
+// Clear away old scores
+function cleanHigh() {
     localStorage.clear()
-    finalscorelist.textContent=""
+    finalscorelist.textContent = ""
 }
 clear.addEventListener('click', cleanHigh)

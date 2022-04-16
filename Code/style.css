@@ -2,17 +2,18 @@
     box-sizing: border-box;
 
 } */
-body {
-    background-color: rgb(135, 165, 139);
-}
+
+
 .hide {
     display: none;
 }
 
 .timebox {
-    background-color: rgb(235, 72, 72);
+   
     max-width: fit-content;
     padding: 20px;
+    max-height: fit-content;
+    font-size: xx-large;
 }
 
 .toppart {
@@ -23,6 +24,7 @@ body {
 
 .highscorelink {
     padding-left: 2px;
+    font-size: 20px;
 }
 
 .highscorelink:hover{
@@ -47,7 +49,9 @@ body {
    
     
 }
-
+#questionbox{
+    font-size: 40px;
+}
 .questionClass {
     background-color: orange;
     padding: 20px;
@@ -75,7 +79,6 @@ body {
     padding: 20px;
 }
 
-/* -----------------pg2----------------------- */
 
 .pg2banner{
     font-size: larger;
