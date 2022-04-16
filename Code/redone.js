@@ -71,11 +71,7 @@ function time() {
 
         if (timeLeft < 0) {
             clearInterval(timeInterval);
-            document.body.style.backgroundImage = "url('./Images/jigsaw.jpg')";
-            document.body.style.backgroundSize = "cover"
-            questionbox.style.display = 'none'
-            highscore.style.display = 'none'
-            box.style.display = 'none'
+
 
         }
 

@@ -8,4 +8,4 @@ This project uses local storage to store your initials and your score. Keep prac
 [Try it out here!](URL)
 
 
-![How it looks]()
+![How it looks]() 
