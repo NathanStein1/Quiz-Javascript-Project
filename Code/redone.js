@@ -54,7 +54,7 @@ var qandA = [
 ]
 
 
-// The game begins here
+// The game begins here-
 
 // Run game
 start.addEventListener("click", startgame);
