@@ -18,7 +18,7 @@ var welcome = document.querySelector('.Welcome')
 var x = document.querySelector(".score")
 var highscore = document.querySelector('.highscorelink')
 var box = document.querySelector('.timebox')
-
+ 
 // This sets up my questions and allows me to assign values in the array
 var qandA = [
     {
@@ -117,7 +117,7 @@ function displayQuestionAnswer() {
         var button = document.createElement("button")
         button.textContent = qandA[currentQIndex].answers[i]
         button.setAttribute("data-index", i)
-        
+
         buttonArray.push(button)
         console.log(buttonArray[i])
         answerCardHead.appendChild(buttonArray[i])
