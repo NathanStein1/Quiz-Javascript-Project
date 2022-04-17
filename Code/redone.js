@@ -19,6 +19,7 @@ var x = document.querySelector(".score")
 var highscore = document.querySelector('.highscorelink')
 var box = document.querySelector('.timebox')
  
+
 // This sets up my questions and allows me to assign values in the array
 var qandA = [
     {
