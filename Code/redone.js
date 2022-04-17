@@ -69,9 +69,9 @@ function time() {
         timer.textContent = timeLeft
 
 
-        if (timeLeft < 0) {
+        if (timeLeft <= 0) {
             clearInterval(timeInterval);
-            congrats.textContent="You might want to run that again...you scored a "
+            congrats.textContent="You might want to try that again..."
 
 
         }
