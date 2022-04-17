@@ -71,6 +71,7 @@ function time() {
 
         if (timeLeft < 0) {
             clearInterval(timeInterval);
+            congrats.textContent="You might want to run that again...you scored a "
 
 
         }
